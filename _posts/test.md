@@ -1,1 +1,5 @@
+---
+layout: post
+title: test
+---
 this is a test
