@@ -14,11 +14,11 @@ title: Home
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {{ post.excerpt }}
+    {{ post.content }}
 
-    <a href="{{ site.baseurl }}{{ post.url }}">
+    <!-- <a href="{{ site.baseurl }}{{ post.url }}">
       Read More ...
-    </a>
+    </a> -->
   </div>
   {% endfor %}
 </div>
@@ -39,4 +39,13 @@ title: Home
     <span class="pagination-item newer">Newer</span>
   {% endif %}
 </div>
+
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>
 
