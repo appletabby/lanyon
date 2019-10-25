@@ -8,7 +8,4 @@ title: About
   歡迎隨意走走看看。
 </p>
 
-<p>https://ubin.io/tAbGTC</p>
-
-![Hello Word](https://i.imgur.com/ku5x2Je.png)
 
