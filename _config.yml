@@ -1,7 +1,7 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
+# permalink:           pretty
 
 # Setup
 title:               Lanyon
@@ -10,6 +10,7 @@ description:         'A reserved <a href="http://jekyllrb.com" target="_blank">J
 url:                 http://lanyon.getpoole.com
 baseurl:             '/murmur'
 paginate:            5
+paginate_path: "blog/page:num"
 excerpt_separator:  '<!-- more -->'
 
 # About/contact
