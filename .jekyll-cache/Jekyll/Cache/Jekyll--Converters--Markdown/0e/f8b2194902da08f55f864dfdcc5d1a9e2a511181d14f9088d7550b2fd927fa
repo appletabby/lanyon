@@ -1,0 +1,57 @@
+I"�<p>本日閱讀進度：第11章 匿名函式、作用域及閉包（485～494頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.函式何時被定義</p>
+
+<p>函式宣告在處理程式碼的第一階段即被定義，函式運算式要在被求值後才會被定義。</p>
+
+<p>2.作用域</p>
+
+<p>定義於程式碼頂端的函式具有全域作用域（global scope），而定義於另一個函式中的函式具有區域作用域（local scope）。
+以書中的範例來看：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var migrating = true;
+var fly = function(num) { // 因定義於程式碼頂端，fly是全域變數
+  var sound = "Flying";   // 函式運算式只有在被求值後，fly才會被視為已定義
+  function wingFlapper() { // wingFlapper的作用域涵蓋整個fly函式，在fly函式中，被視為已定義
+    console.log(sound);
+  }
+  for (var i = 0; i &lt; num; i++) {
+    wingFlapper();
+  }
+};
+function quack(num) {
+  var sound = "Quack";
+  var quacker = function() { //quacker的作用域涵蓋整個quack函式，但只在被求值後，視為已定義
+    console.log(sound);
+  };
+  for (var i = 0; i &lt; num; i++) {
+    quacker();
+  }
+}
+if (migrating) {
+  quack(4);
+  fly(4);
+}
+</code></pre></div></div>
+
+<p>3.函式的操作環境</p>
+
+<p>一樣使用程式碼來說明。
+假設有一段code長這樣：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function whereAreYou() {
+  var justAVar = "Just an every day LOCAL"; //所有的區域變數皆會被存入一個操作環境
+  function inner() { //每一個函式皆會附接一個操作環境，其中包含了它的作用域所涵蓋的區域變數
+    return justAVar;
+  }
+  return inner;
+ }
+ var innerFunction = whereAreYou();
+ var result = innerFunction();
+ console.log(result);
+</code></pre></div></div>
+
+<p>函式包來包去，看得眼睛都快花了@_@</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10225985">iT邦幫忙</a></p>
+:ET

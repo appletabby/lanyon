@@ -1,0 +1,104 @@
+I"�<p>本日閱讀進度：第13章 使用原型（581～614頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.判斷使用的屬性位於實體還是原型中</p>
+
+<p>要判斷使用的屬性位於實體還是原型中，可以使用hasOwnProperty方法。</p>
+
+<p>如果hasOwnProperty回傳true，表示屬性定義於實體；</p>
+
+<p>如果回傳false，但卻可以存取該屬性，則屬性定義於原型。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 接續昨天的程式碼
+console.log(abui.hasOwnProperty("specises"));
+// false
+// 因為specises定義於原型
+</code></pre></div></div>
+<p>那如果是繼承後又自訂屬性呢？</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>console.log(abui.hasOwnProperty("meow"));  // false =&gt;沒有自訂
+console.log(kitty.hasOwnProperty("meow")); // true  =&gt;有自訂
+// 還記得昨天kitty改成汪汪叫了嗎XD
+</code></pre></div></div>
+
+<p>2.判斷物件建立自哪個建構程序</p>
+
+<p>要判斷物件來自哪個建構程序，可以使用constructor屬性。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function Cat(name, color, age) {
+  this.name = name;
+  this.color = color;
+  this.age = age;
+}
+var abui = new Cat("Abui", "orange", 1);
+console.log(abui.constructor);
+// function Cat(name, color, age).....以下略
+// 表示abui建立自Cat建構程序
+</code></pre></div></div>
+<p>如果現在有一隻導盲貓tabby，建立自GuideCat建構程序，GuideCat又建立自Cat，
+那tabby.constructor會有什麼結果呢？</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 承上述程式碼
+function GuideCat(name, color, age, guide) { // GuideCat建構程序
+  this.name = name;
+  this.color = color;
+  this.age = age;
+  this.guide = guide; // 導盲的對象
+}
+
+GuideCat.prototype = new Cat(); // 把GuideCat的prototype屬性設定為一個新的貓物件實體
+var tabby = new GuideCat("Tabby", "gray", 3, "Apple"); // 新的導盲貓實體tabby
+
+console.log(abui.constructor);
+// function Cat(name, color, age).....以下略
+</code></pre></div></div>
+<p>等等，tabby不是建立自GuideCat嗎？</p>
+
+<p>是的，這是一個小問題，不改也沒關係，程式碼也一樣能運作，</p>
+
+<p>但是為物件設置正確的constructor是一個好習慣，</p>
+
+<p>以免下一個接手程式碼的人（可能是3年後的你）搞混。</p>
+
+<p>所以我們可以：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GuideCat.prototype = new Cat();
+GuideCat.prototype.constructor = GuideCat; // 多加上這一行
+var tabby = new GuideCat("Tabby", "gray", 3, "Apple") ;
+
+console.log(abui.constructor);
+// function GuideCat(name, color, age, guide).....以下略
+</code></pre></div></div>
+
+<p>3.清理程式碼</p>
+
+<p>上述程式還有另外一個問題，Cat和GuideCat重複的程式碼太多了。</p>
+
+<p>可以使用內建函式call來精簡程式碼：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function GuideCat(name, color, age, guide) { 
+  this.name = name;       // 複製自Cat建構程序
+  this.color = color;     // 複製自Cat建構程序
+  this.age = age;         // 複製自Cat建構程序
+  this.guide = guide;
+}
+
+//改成：
+function GuideCat(name, color, age, guide) { 
+  Cat.call(this, name, color, age);
+  this.guide = guide;
+}
+</code></pre></div></div>
+
+<p>4.其他重點</p>
+
+<ul>
+  <li>
+    <p>所以物件皆繼承自Object</p>
+  </li>
+  <li>
+    <p>繼承來的屬性可以覆寫，但以下除外：constructor、hasOwnProperty、isPrototype、propertyIsEnumerable</p>
+  </li>
+</ul>
+
+<p>終於把這本600多頁的書K完啦！（其實有跳過一整章，還有後面的附錄）</p>
+
+<p>明天就剩下參賽感言了，耶！</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10228076">iT邦幫忙</a></p>
+:ET

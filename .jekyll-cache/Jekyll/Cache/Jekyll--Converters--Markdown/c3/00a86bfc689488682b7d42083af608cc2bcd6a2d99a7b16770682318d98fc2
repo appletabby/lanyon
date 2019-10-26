@@ -1,0 +1,83 @@
+I"
+<p>本日閱讀進度：第五章 認識物件（173～185頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.物件是什麼？</p>
+
+<p>物件(object)是屬性所構成的一個集合。在Ruby程式語言中，稱為雜湊(hash)。</p>
+
+<p>2.屬性又是什麼？</p>
+
+<p>用一隻貓的例子來看：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name: "Abui"
+weight: 3
+age: 1
+color: "orange"
+breed: "mixed"
+tnr: true
+</code></pre></div></div>
+<p>當然一隻貓還會有很多屬性，以上只是列舉。</p>
+
+<p>從上面的例子可以看出，屬性包含了「屬性名稱」(key)和屬性的「值」(value)。</p>
+
+<p>屬性的「值」可以是字串、數字、布林值。</p>
+
+<p>3.如何建立一個物件？</p>
+
+<p>把上面的例子用大括號包起來就可以囉！</p>
+
+<p>記得屬性之間要用一個逗號(,)隔開，最後的分號(;)也不要漏了。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var abui = {
+  name: "Abui",
+  weight: 3,
+  age: 1,
+  color: "orange",
+  breed: "mixed,
+  tnr: true
+};
+</code></pre></div></div>
+
+<p>4.如何操作屬性？</p>
+
+<ul>
+  <li>如何存取一個屬性？</li>
+</ul>
+
+<p>很簡單，使用點號加上屬性名稱就可以了。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>abui.name
+</code></pre></div></div>
+
+<ul>
+  <li>如何改變一個屬性？</li>
+</ul>
+
+<p>可以在任何時侯改變一個屬性的值。只需要將一個新值賦值給該屬性即可。</p>
+
+<p>注意，剛剛大括號裡是用冒號(:)表示值，這裡是用等號(=)賦值喔！</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>abui.weight = 4;
+//吃太多變胖了XD
+</code></pre></div></div>
+
+<ul>
+  <li>如何添加新的屬性？</li>
+</ul>
+
+<p>可以在任何時候執行。只需要指定新的屬性並對它賦值就可增加新的屬性。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>abui.skill = "sainai";
+</code></pre></div></div>
+
+<ul>
+  <li>如何刪除屬性？</li>
+</ul>
+
+<p>可以使用delete這個關鍵字來刪除屬性。</p>
+
+<p>刪除後，不僅是值被刪除，屬性本身也被刪除了。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>delete abui.color;
+</code></pre></div></div>
+
+<p>物件有趣嗎？明天講到物件傳值的部分就不那麼有趣了……</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10221222">iT邦幫忙</a></p>
+:ET

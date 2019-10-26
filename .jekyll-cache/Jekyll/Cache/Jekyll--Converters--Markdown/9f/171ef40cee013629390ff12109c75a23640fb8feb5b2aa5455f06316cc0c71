@@ -1,0 +1,62 @@
+I"�
+<p>本日閱讀進度：第12章 高階物件結構（536～553頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.將引數改寫成物件字面</p>
+
+<p>假設在建構程序中有許多參數，會變得難以閱讀和維護。
+這時可以將所有引數都放入一個物件字面，再把該字面傳遞給函式，
+這樣就可以把值傳入一個容器（字面物件），而且不用擔心引數與參數的順序是否相同。
+改寫範例如下：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var kitty = new Cat("Kitty", "white", 1, "mixed", "male"); // 原本長這樣
+
+var kittyParams = {name: "Kitty",  // 可改寫成這樣
+                   color: "white",
+                   weight: 1,
+                   breed: "mixed",
+                   gender: "male"};
+
+var kitty = new Cat(kittyParams); // 再將單一引數傳遞給Cat建構程序
+
+function Cat(params) {   // 把Cat建構程序的5個參數代換成一個參數params，也就是我們要傳入的物件
+  this.name = params.name;
+  this.color = params.color;
+  this.weight = params.weight;
+  this.breed = params.breed;
+  this.gender = params.gender;
+}
+</code></pre></div></div>
+
+<p>2.如何檢查物件實體</p>
+
+<p>之前介紹過<code class="highlighter-rouge">typeof</code>運算符，它會回傳其運算元的資料型別。
+而要檢查一個實體是否由某個建構程序所建立，可以使用<code class="highlighter-rouge">instanceof</code>。
+例如要檢查kitty是不是Cat建構所建立的物件：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 接續上述程式碼
+if (kitty instanceof Cat) { //如果是的話，instanceof會回傳true
+  console.log("Yes, it's a Cat");
+};
+// "Yes, it's a Cat"
+</code></pre></div></div>
+
+<p>3.建構後可否修改？</p>
+
+<p>即使是經建構的物件，也可以具有獨立的屬性。
+例如上述的kitty，</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kitty.owner = "Mickey"; // 添加新的屬性
+delete kitty.weight;    // 使用delete移除一個屬性
+</code></pre></div></div>
+<p>甚至可以添加新的方法：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kitty.trust = function(person) {
+                return (person === "Mickey");
+              };
+</code></pre></div></div>
+<p>一個有趣的問題是，如果我們移除了kitty所有的屬性，它仍舊是Cat嗎？</p>
+
+<p><code class="highlighter-rouge">instanceof</code>會告訴你：是的。</p>
+
+<p>讓物件大量發生的高階物件結構就介紹到這，鐵人賽終於快要倒數啦！</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10227473">iT邦幫忙</a></p>
+:ET

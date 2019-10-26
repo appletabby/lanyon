@@ -1,0 +1,80 @@
+<p>本日閱讀進度：第十章 一級函式（429～441頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.函式宣告</p>
+
+<p>到目前為止，我們都是使用function關鍵字、名稱、參數以及程式碼區塊進行標準的函式宣告（function declaration）：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function meow(num) {
+  for (var i = 0; i &lt; num; i++) {
+    console.log("Meow!");
+  }
+}
+meow(3);
+//"Meow!"
+//"Meow!"
+//"Meow!"
+</code></pre></div></div>
+
+<p>2.函式運算式</p>
+
+<p>如果在述句裡使用function關鍵字，稱之為函式運算式（function expression）</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var wang = function(num) {
+  for (var i = 0; i &lt; num; i++) {
+    console.log("Wang!");
+  }
+}
+wang(3);
+//"Wang!"
+//"Wang!"
+//"Wang!"
+</code></pre></div></div>
+
+<p>3.瀏覽器解析流程</p>
+
+<p>假設現在有一段程式碼如下：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//part1
+var migrating = true;
+
+//part2
+var wang = function(num) {
+  for (var i = 0; i &lt; num; i++) {
+    console.log("Wang!");
+  }
+};
+
+//part3
+function meow(num) {
+  for (var i = 0; i &lt; num; i++) {
+    console.log("Meow!");
+  }
+}
+
+//part4
+if (migrating) {
+  meow(3);
+  wang(3);
+}
+</code></pre></div></div>
+<p>瀏覽器解析頁面時會先找尋函式宣告，也就是part3。找到後，它就會建立一個函式，並把函式址參器賦值給一個跟函式同名的變數。</p>
+
+<p>之後瀏覽器會回到程式碼頂端，由上到下開始執行程式。也就是：</p>
+
+<p>part1 =&gt; part2 =&gt; part3（由於已經處理過，會跳過） =&gt; part4(印出3次”Meow!”和3次”Wang!”）</p>
+
+<p>在part2，瀏覽器會建立一個址參器以便指向這個新的函式，並把該函式賦值給wang變數。</p>
+
+<p>4.函式宣告和函式運算式的區別</p>
+
+<ul>
+  <li>
+    <p>使用函式宣告時，會先進行函式的建立和設置，之後才會執行其餘的程式碼；使用函式運算式時，函式的建立是在程式碼執行期間進行的。</p>
+  </li>
+  <li>
+    <p>使用函式宣告時，它會自動替你把函式址參器賦值給一個變數；使用函式運算式時，需要自己把所得到的址參器賦值給一個變數。</p>
+  </li>
+</ul>
+
+<p>ps.江郎才盡。今天的標題沒有梗。</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10225414">iT邦幫忙</a></p>

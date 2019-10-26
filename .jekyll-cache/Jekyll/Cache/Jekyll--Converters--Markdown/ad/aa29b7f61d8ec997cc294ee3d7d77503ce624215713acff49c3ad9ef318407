@@ -1,0 +1,48 @@
+I"�<p>本日閱讀進度：
+第二章 撰寫真正的程式碼（61～78頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.Math.random</p>
+
+<p>昨天介紹的戰艦遊戲，一開始就把戰艦定位在3、4、5的位置，
+但如果想多玩幾次，就需要讓戰艦隨機出現在不同位置上。</p>
+
+<p>還好JavaScript內建許多與數學相關的函式，這次要用到的是隨機方法是
+<code class="highlighter-rouge">Math.random</code></p>
+
+<p><code class="highlighter-rouge">Math.random</code>會回傳一個介於0～1（不包含1）的數字，但我們要的是一個範圍0～4的整數。</p>
+
+<p>（位置要從0開始起算，到6剛好7格。而戰艦佔了3個位置，如果放在5或6，屁股就跑出去囉！）</p>
+
+<p>所以要把<code class="highlighter-rouge">Math.random</code>得出的數字乘上5，然後再加上floor方法，將小數點直接捨去，
+就會得到範圍0～4的整數了。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var randomLoc = Math.floor.random() * 5;
+var location1 = randomLoc;
+var location2 = loaction1 + 1;
+...以下略
+</code></pre></div></div>
+
+<p>2.布林運算符</p>
+
+<p>布林運算符有兩種，其求值結果不是true就是false。</p>
+<ul>
+  <li>
+    <p>比較運算符
+就是小於&lt;、大於&gt;、小於等於&lt;=……等符號。比較特別的是==、===、和!=。</p>
+
+    <p>!=是不等於，但我們現在先不討論==和===好了。理由…不好說XD</p>
+  </li>
+  <li>
+    <p>邏輯運算符
+||  是指OR邏輯運算。兩個運算式，只要有一個為true，則結果為true。</p>
+
+    <p>&amp;&amp;  是指AND邏輯運算。兩個運算式，需要兩者皆為true，其結果才為true</p>
+  </li>
+</ul>
+
+<p>預告一下，明天即將進入JavaScript的重頭戲：函式囉！</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10218723">iT邦幫忙</a></p>
+:ET

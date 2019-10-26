@@ -1,0 +1,63 @@
+I"�<p><strong>什麼是Spring？</strong></p>
+
+<p>spring是一款Rails的應用程式預加載套件（application preloader），從Rails4.1版開始成為Rails標準配備。（是因為一直被詬病速度很慢的關係嗎？）</p>
+
+<p>由於在Rails裡會進行各種函式庫加載等前置處理，執行指令時需要一些等待時間。Spring可以讓應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate、console 時，不用每次都重啟 Rails 應用程式，加速你的開發流程。尤其在開發的過程中，需要執行數十次、數百次指令，這些時間累積下來是很可觀的。</p>
+
+<p>除了Spring以外，其他有名的預加載套件還有Spork、Zeus等。</p>
+
+<p><strong>實際測試</strong></p>
+
+<p>接下來就依照Spring的官方文件實際跑一下測試。</p>
+
+<p>首先用Rails new一個專案，然後在終端機輸入
+<code class="highlighter-rouge">rails generate scaffold post name:string</code>
+執行<code class="highlighter-rouge">rails db:migrate</code>
+開始跑測試：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time bin/rake test test/controllers/posts_controller_test.rb
+Running via Spring preloader in process 59476
+2019-09-16 06:48:20 WARN Selenium [DEPRECATION] Selenium::WebDriver::Chrome#driver_path= is deprecated. Use Selenium::WebDriver::Chrome::Service#driver_path= instead.
+Run options: --seed 44381
+# Running:
+.......
+Finished in 1.363423s, 5.1341 runs/s, 6.6010 assertions/s.
+7 runs, 9 assertions, 0 failures, 0 errors, 0 skips
+bin/rake test test/controllers/posts_controller_test.rb  0.16s user 0.03s system 6% cpu 3.048 total
+</code></pre></div></div>
+
+<p>因為這是第一次執行，Spring需要啟動應用程式，所以此時速度並不是很快。查看Spring狀態如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bin/spring status
+Spring is running:
+59197 spring server | spring_test | started 3 mins ago
+59225 spring app    | spring_test | started 3 mins ago | development mode
+59300 spring app    | spring_test | started 3 mins ago | test mode
+</code></pre></div></div>
+
+<p>第二次執行就會快一點了。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ time bin/rake test test/controllers/posts_controller_test.rb
+Running via Spring preloader in process 59876
+Run options: --seed 43850
+# Running:
+.......
+Finished in 0.374407s, 18.6962 runs/s, 24.0380 assertions/s.
+7 runs, 9 assertions, 0 failures, 0 errors, 0 skips
+bin/rake test test/controllers/posts_controller_test.rb  0.16s user 0.03s system 23% cpu 0.813 total
+</code></pre></div></div>
+
+<p>如果修改了一般的應用程式檔案或是測試檔案，不需重啟Rails應用程式；但如果修改的是用於啟動應用程式的檔案，如：configs、initializers、gemfile等，就需要進行重啟，Spring會自動幫你執行。</p>
+
+<p><strong>其他加速方法</strong></p>
+
+<p>想要使Rails更快，除了使用Spring之外，還可以檢查一下Gemfile，移除不必要的gem，或是將gem放在適當的group，只在需要的環境下載入。另外也可在gem後面加上require false ，讓bundle 的情況下一定會安裝這個 Gem, 但不在 rails 啟動時直接 require 加載進來。
+參考資料：</p>
+
+<p><a href="https://www.rubydoc.info/gems/spring/2.1.0">Spring官方文件</a></p>
+
+<p><a href="https://ruby-rails.hatenadiary.com/entry/20141026/1414289421">Railsの開発効率をあげる — Springを使ってRailsのコンソールコマンドの実行を早くする</a></p>
+
+<p><a href="https://blog.niclin.tw/2018/07/21/%E5%BF%AB%E5%B0%B1%E6%98%AF%E5%B8%A5%E5%8A%A0%E9%80%9F%E4%BD%A0%E7%9A%84-rails-%E5%B0%88%E6%A1%88%E5%95%9F%E5%8B%95%E6%99%82%E9%96%93/">快就是帥，加速你的 Rails 專案啟動時間</a></p>
+
+<p><a href="https://rails.ruby.tw/4_1_release_notes.html">Ruby on Rails 4.1 發佈記</a></p>
+:ET

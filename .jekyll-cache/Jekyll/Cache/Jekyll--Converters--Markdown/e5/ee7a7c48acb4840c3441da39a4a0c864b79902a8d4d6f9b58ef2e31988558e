@@ -1,0 +1,69 @@
+I"
+<p>本日閱讀進度：第二章 撰寫真正的程式碼（43～60頁）</p>
+
+<p>重點摘要：
+接著要挑戰做一個簡單的戰艦小遊戲。
+有一個1x7的網格，戰艦佔用3個連續網格，使用者需猜測是哪3格，全部猜對可擊沈戰艦。
+遊戲該怎麼做呢？</p>
+
+<p>1.弄清楚遊戲的執行流程</p>
+
+<p>①使用者啟動遊戲</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A. 遊戲會把戰艦隨機地放在網格的某個位置上。
+</code></pre></div></div>
+
+<p>②開始玩遊戲</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>反覆進行以下步驟，直到戰艦被擊沈：
+
+A. 提示使用者猜測1個數字。
+
+B. 檢查使用者所做的猜測，判斷結果是命中、失誤或擊沈。
+</code></pre></div></div>
+
+<p>③結束遊戲</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>根據猜測的次數給使用者一個評價。
+</code></pre></div></div>
+
+<p>2.撰寫虛擬碼</p>
+
+<p>寫程式碼之前，先用自己熟悉的語言來描述程式的運作。如：</p>
+
+<p>宣告3個變數，用於保存戰艦的每個網格(location)的位置。
+  …中略…
+  宣告1個變數，用於記錄船艦是否被擊沈。</p>
+
+<p>3.將虛擬碼改寫成程式碼</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  var location1 = 3;
+  ...中略...
+  var isSunk = false;
+</code></pre></div></div>
+
+<p>4.加入迴圈、條件判斷</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  while (isSunk == false){
+    guess = prompt("準備、瞄準、射擊！（鍵入範圍0-6的數字）：");
+    if (guess &lt; 0 || guess &gt; 6) {
+      alert("請鍵入一個有效的數字！");
+    } else {
+      guesses = guess + 1;
+    }
+  }
+</code></pre></div></div>
+
+<p>5.提供遊戲後的分析</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  var stats = "你猜了" + guesses + "次便擊沈了戰艦," + "射擊準確率為" + (3/guesses);
+  alert(stats);
+</code></pre></div></div>
+
+<p>其他補充：prompt的運作原理
+prompt函式和alert函式很像，但多了一個輸入框，輸入的內容（字串形式）會被函式呼叫的結果傳回。如果使用者關掉對話框或是沒有輸入任何值，那麼null會被當成結果回傳。</p>
+
+<p>到第8章的時候會做一個7x7網格的戰艦遊戲，到底能不能撐到那時候呢？讓我們繼續看下去……</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10218238">iT邦幫忙</a></p>
+:ET

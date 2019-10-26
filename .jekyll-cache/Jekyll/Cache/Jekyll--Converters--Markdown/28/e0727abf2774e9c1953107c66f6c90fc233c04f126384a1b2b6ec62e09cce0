@@ -1,0 +1,52 @@
+I"�<p>本日閱讀進度：第11章 匿名函式、作用域及閉包（475～484頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.匿名函式簡介</p>
+
+<p>匿名函式（Anonymous function），顧名思義就是沒有名稱的函式。</p>
+
+<p>如果使用函式宣告來定義一個函式，就一定會有名稱；
+但如果使用函式運算式來定義一個函式，就不必為函式指定一個名稱。</p>
+
+<p>匿名函式的好處是可以讓程式碼更簡短、更有效，甚至更易於維護。</p>
+
+<p>2.如何改寫匿名函式</p>
+
+<p>直接看程式碼：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 假設原本程式碼長這樣
+function handler() {alert("Yeah, that page loaded!");}
+window.onload = handler;  // &lt;- 頁面載入後，handler函式就會被調用
+
+// 把這兩行的handler拿掉
+function() {alert("Yeah, that page loaded!");} // &lt;- 變成函式運算式
+window.onload = ;
+
+// 再把兩行併在一起，就完成了
+window.onload = function() {alert("Yeah, that page loaded!");}
+// handler已經被賦值給window.onload屬性
+</code></pre></div></div>
+
+<p>3.較長函式的寫法</p>
+
+<p>一樣直接看code：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 原本函式長這樣
+function cookieAlarm() {
+  alert("Time to take the cookies out of the oven");
+};
+
+setTimeout(cookieAlarm, 600000) // &lt;- 此處以毫秒為單位，所以等於10分鐘
+
+// 拿掉變數，直接把函式內嵌在setTimeout中
+setTimeout(function() {alert("Time to take the cookies out of the oven");}, 600000);
+
+// 但這樣寫不容易閱讀，改成下方寫法較佳
+setTimeout(function() {
+             alert("Time to take the cookies out of the oven");
+           }, 600000);
+</code></pre></div></div>
+
+<p>是說我第一次認識Anonymous這個單字，是因為BBS的匿名板，已經是N年前的事了啊（遠目）</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10225985">iT邦幫忙</a></p>
+:ET

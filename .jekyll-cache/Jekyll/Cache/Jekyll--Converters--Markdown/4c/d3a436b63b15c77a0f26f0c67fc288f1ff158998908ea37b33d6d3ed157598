@@ -1,0 +1,88 @@
+I" <p>本日閱讀進度：第五章 認識物件（186～205頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.變數裡放的是物件嗎？</p>
+
+<p>還記得之前的文章提過JavaScript的引數傳遞是pass by value，但是有例外嗎？例外就是遇到物件的時候。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var abui = {
+  name: "Abui",
+  weight: 3,
+  age: 1,
+  color: "orange",
+  breed: "mixed,
+  tnr: true
+};
+</code></pre></div></div>
+<p>abui這個變數所保存的實際上不是物件，而是物件的址參器（reference）。</p>
+
+<p>址參器就像是一個指向實際物件的指標（pointer）或位址（address）。</p>
+
+<p>在JavaScript中，我們並不知道址參器變數裡所保存的是什麼東西，但不管它是什麼，它會指向我們的一個物件。</p>
+
+<p>以下照抄課本原文，但我看不是很懂，之後再找別的資料來研究。</p>
+<blockquote>
+  <p>當叫用一個函式並把一個物件傳遞給它時，傳遞的是物件址參器，而不是物件本身。所以根據按值傳遞的語義，這會使得址參器的副本被傳進參數，而該址參器仍然指向原本的物件。
+所以，這意味著如果你在函式中改變物件的一個屬性，會因而改變原本物件的屬性。所以當函式執行完畢時，你在函式中對物件所做的任何改變仍然會存在。</p>
+</blockquote>
+
+<p>2.可以把函式加入物件嗎？</p>
+
+<p>可以的，就像下面的例子：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var camry = {
+  maker: "toyota",
+  color: "white",
+  year: 2014,
+  drive: function() {
+    alert.log("Zoom zoom!");
+  }
+};
+</code></pre></div></div>
+<p>注意到函式右邊的圓括號裡是空的了嗎？這裡沒有提供名稱給函式，因為函式的名稱就是屬性的名稱。</p>
+
+<p>3.this的運作原理</p>
+
+<p>this有點像Ruby裡的self。可以把this想成是一個變數，而且該變數被分配給了剛才被我們呼叫了方法的物件。</p>
+
+<p>用以下例子來看：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var camry = {
+  maker: "toyota",
+  color: "white",
+  year: 2014,
+  started: false,
+  
+  start: function() {
+    started = true;  //這裡有誤
+  },
+</code></pre></div></div>
+<p>在這裡用了一個started屬性，但是把started寫在camry物件裡，JavaScript知道我們指的是started屬性嗎？</p>
+
+<p>答案是JavaScript不知道，所以我們需要在started前加上this，this會指向camry這個物件，程式就能順利運作了。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  start: function() {
+    this.started = true;  //這樣才是對的
+  },
+  
+  stop: function() {
+    this.started = false;
+  },
+  
+  drive: function() {
+    if (this.started) {
+      alert("Zoom zoom!");
+    } else {
+      alert("You need to start the engine first.")
+    }
+  }
+};
+
+camry.drive();
+camry.start();
+camry.drive();
+camry.stop();
+</code></pre></div></div>
+
+<p>是不是覺得物件很複雜呢？我也這麼覺得。但已經比第一次接觸時多懂了一些些，慢慢累積就會越來越清晰了。（應該啦）</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10221672">iT邦幫忙</a></p>
+:ET

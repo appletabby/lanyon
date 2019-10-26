@@ -1,0 +1,96 @@
+<p>本日閱讀進度：第十章 一級函式（442～464頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.一級函式</p>
+
+<p>在JavaScript中，我們對其他值所能做的任何事情，對函式也能做。
+你可以對函式做以下操作：</p>
+
+<ul>
+  <li>將它賦值給一個變數（或是將它存入陣列或物件之類的資料結構）（昨天已經介紹過）</li>
+  <li>將函式傳遞給一個函式</li>
+  <li>從一個函式回傳函式</li>
+</ul>
+
+<p>2.將函式傳遞給函式</p>
+
+<p>以書中的測驗為範例，大家可以想想答案是什麼，正確答案公布在最下方。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//我們建立了一個函式，並把它賦值給名為fun的變數。
+function fun(echo) {
+  console.log(echo);
+};
+
+//#1
+fun("hello");
+
+//#2
+function boo(aFunction) {
+  aFunction("boo");
+}
+boo(fun);
+
+//#3
+fun(boo);
+
+//#4
+var moreFun = fun;
+moreFun("hello again");
+</code></pre></div></div>
+
+<p>3.從函式回傳函式</p>
+
+<p>借用書中空服員幫乘客點飲料的範例：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function createDrinkOrder(passenger) {
+  var orderFunction;  // &lt;-建立一個變數，用於保存我們想要回傳的函式
+  if (passenger.ticket === "firstclass") {
+    orderFunction = function() {
+      alert("Would you like a cocktail or wine?");
+    };
+  } else {
+    orderFunction = function() {
+      alert("Your choice is cola or water.");
+    };
+  }
+  return orderFunction;  // &lt;-回傳函式
+}
+
+function serveCustomer(passenger) {
+  var getDrinkOrderFunction = createDrinkOrder(passenger);
+  getDrinkOrderFunction(); // &lt;-需要讓乘客點飲料的時候，就使用此函式
+}
+// getDrinkOrderFunction 比 createDrinkOrder簡單，前者只會顯示警示訊息來詢問乘客點飲料的問題。
+</code></pre></div></div>
+
+<p>4.陣列sort方法的工作原理</p>
+
+<p>JavaScript陣列所提供的sort方法，需要被傳入一個函式，該函式知道如何比較陣列中的兩筆資料項，以利陣列的排序。
+如以下範例：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var numberArray = [60, 50, 62, 58, 54, 54];
+
+function compareNumbers(num1, num2) {
+  if (num1 &gt; num2) {
+    return 1;
+  } else if (num1 === num2) {
+    return 0;
+  } else {
+    return -1;
+  }
+}
+
+numberArray.sort(compareNumbers);
+console.log(numberArray);
+// [50, 54, 54, 58, 60, 62]
+</code></pre></div></div>
+
+<p>第2項的答案：</p>
+
+<p>1.hello</p>
+
+<p>2.boo</p>
+
+<p>3.function boo(aFunction) {aFunction(“boo”);}</p>
+
+<p>4.hello again</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10225814">iT邦幫忙</a></p>

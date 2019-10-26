@@ -1,0 +1,94 @@
+I"�<p>本日閱讀進度：第四章 陣列（146～166頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.事後遞增運算符 VS 事後遞減運算符</p>
+
+<p>JavaScript裡難得有比Ruby簡潔的寫法，以下是兩個例子。</p>
+
+<ul>
+  <li>事後遞增運算符
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x = x + 1
+可以改寫為
+x++
+</code></pre></div>    </div>
+  </li>
+  <li>事後遞減運算符
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>x = x - 1
+可以改寫為
+x--
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>2.稀疏陣列</p>
+
+<p>稀疏陣列是一個包含空隙的陣列，例如索引0和索引2有值，但是索引1沒有值，此時索引1為undefined（未定義）。
+即使它沒有值，也會佔用電腦的記憶體，故不建議建立這樣的陣列。</p>
+
+<p>3.while迴圈 VS for迴圈</p>
+
+<p>當不知道要循環幾次時，通常會使用while迴圈，while迴圈會循環到條件不相符為止。當知道迴圈要執行幾次時，通常會使用for迴圈。</p>
+
+<p>4.將新值加入陣列</p>
+
+<p>可以使用push來將一個新值加入陣列。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var emptyBox = [];
+  emptyBox.push("x", true, 5);
+console.log(emptyBox);
+// ["x", true, 5]
+</code></pre></div></div>
+
+<p>本章的後半段結合了for迴圈和函式來判斷陣列裡CP值最高（得分最高、成本最低）的產品，原本的陣列裡有36個值，來寫個6個值的精簡版吧。（但迴圈和函式的code還是很不精簡XD）</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var scores = [60, 50, 60, 58, 54, 52];
+var highScore = 0;
+for (var i = 0; i &lt; scores.length; i++) {
+  output = "編號" + i + "得" + scores[i] + "分";
+  console.log(output);
+  //"編號0得60分" 
+  //"編號1得50分"
+  //以下略
+  
+  if (scores[i] &gt; highScore) {
+    highScore = scores[i];
+  }
+}
+
+function getBestResults(scores, highScore){
+  var highestSolution = [];
+  for (var i = 0; i &lt; scores.length; i++){
+    if (scores[i] == highScore) {
+      highestSolution.push(i);
+    }
+  }
+  return highestSolution;
+}
+var highestSolution = getBestResults(scores, highScore);
+console.log("編號" + highestSolution + "得最高分")
+//"編號0,2得最高分"
+
+
+var costs = [.25, .27, .33, .29, .27, .22];
+function getBestSolution(scores, costs, highScore){
+  var cost = 100;
+  var index;
+  
+  for (var i = 0; i &lt; scores.length; i++) {
+    if (scores[i] == highScore) {
+      if (cost &gt; costs[i]) {
+        index = i;
+        cost = cost[i];
+      }
+    }
+  }
+  return index;
+}
+var bestSolution = getBestSolution(scores, costs, highScore);
+console.log("編號" + bestSolution + "CP值最高");
+//"編號0CP值最高"
+</code></pre></div></div>
+
+<p>我想大家看code也看得很累了（應該是直接跳過吧XD），今天就先這樣啦！</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10220723">iT邦幫忙</a></p>
+:ET

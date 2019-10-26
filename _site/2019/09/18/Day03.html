@@ -1,0 +1,64 @@
+<p>總算要進入JavaScript的主題了。</p>
+
+<p>本日閱讀進度：
+第一章 JavaScript 快速導覽（1～21頁）</p>
+
+<p>重點摘要：
+1.JavaScript語法</p>
+
+<p>因為第一個學的程式語言是Ruby，免不了想拿來和JavaScript比較異同，例如：</p>
+
+<ul>
+  <li>
+    <p>每列述句需以分號做結束。</p>
+
+    <p><code class="highlighter-rouge">x = x + 1;</code></p>
+  </li>
+  <li>
+    <p>單引號和雙引號使用上沒有什麼不同，前後一致即可。</p>
+  </li>
+  <li>
+    <p>宣告變數的時候不一定要賦值。</p>
+
+    <p><code class="highlighter-rouge">var width;</code></p>
+  </li>
+  <li>
+    <p>字串串接寫法。</p>
+
+    <p><code class="highlighter-rouge">“Dear” + name + ”,”</code></p>
+  </li>
+  <li>
+    <p>和Ruby不同，述句中有很多圓括號和花括號。</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (dog.weight &gt; 30) {
+  alert("WOOF WOOF");
+} else {
+  alert("woof woof");
+}
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>2.變數命名規則</p>
+
+<ul>
+  <li>變數名稱的開頭可以是一個字母、底線，或是一個錢字號。但是除非你有很好的理由，否則最好避免使用底線和錢 字號開頭。</li>
+  <li>之後可以使用多個字母、數字、底線或錢字號。</li>
+  <li>變數不要使用關鍵字（保留字），以免造成混淆。</li>
+  <li>建立多單字的變數時，多採用駝峰式命名（camelCase）。</li>
+</ul>
+
+<p>3.while迴圈</p>
+
+<p>迴圈對於程式初學者來說是個小關卡，所以書裡用了五球冰淇淋的圖示來介紹迴圈的概念，相當淺顯易懂，之後幾章會再詳細介紹其他迴圈用法。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   var scoops = 5;
+   while (scoops &gt; 0){
+     document.write("來一球！&lt;br&gt;");
+     scoops = scoops - 1;
+   }
+   document.write("沒有冰淇淋的生活是灰色的");
+</code></pre></div></div>
+
+<p>既然上一篇提到圖片有助於學習，那就來張冰淇淋的圖片做為結尾吧！
+<img src="https://images.pexels.com/photos/675439/pexels-photo-675439.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="icecream" /></p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10216901">iT邦幫忙</a></p>

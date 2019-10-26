@@ -1,0 +1,64 @@
+<p>本日閱讀進度：第四章 陣列（125～145頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.陣列是一種可以用來保存許多值的資料型別，許多程式語言都有這種型別，包含JavaScript和Ruby。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var number = [1, 3, 5, 7, 9];
+</code></pre></div></div>
+
+<p>2.可以將陣列所有的值視為一體，或是在有需要時存取陣列中個別的值。</p>
+
+<p>取值的方法是加上中括號，並填入索引值。</p>
+
+<p>注意，陣列的索引值從0起算，如果要取第一個值，寫法是：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var number0 = number[0];
+console.log(number0);
+// 得到數值1
+</code></pre></div></div>
+
+<p>3.如果想要改變陣列中的某個值：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>number[1] = 10;
+console.log(number);
+// [1, 10, 5, 7, 9] 陣列中的第2個值已被修改
+</code></pre></div></div>
+
+<p>4.如何知道這個陣列有多大？</p>
+
+<p>可以使用length這個屬性。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var amount = number.length;
+console.log(amount);
+// 得到5
+</code></pre></div></div>
+
+<p>5.陣列中的值可以是不同資料型別嗎？</p>
+
+<p>可以的，但是一般情況下，陣列中的值使用相同的資料型別會比較安全和容易使用。</p>
+
+<p>6.要如何取得陣列的最後一筆資料？</p>
+
+<p>這個問題如果用Ruby來解，會非常簡單，</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>number[-1]
+或
+number.last
+</code></pre></div></div>
+<p>都可以迅速得到答案。</p>
+
+<p>來看看JavaScript的寫法：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>number[number.length - 1];
+</code></pre></div></div>
+<p>是不是很麻煩呢？</p>
+
+<p>7.for迴圈</p>
+
+<p>之前介紹過while迴圈，現在要介紹寫法更為簡潔的for迴圈。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (var i = 0; i &lt; number.length; i = i + 1) {
+  output = "我有 " + number[i] + " 支筆";
+console.log(output);
+// "我有 1 支筆"
+// "我有 10 支筆"
+// 以下略
+</code></pre></div></div>
+
+<p>今天就先介紹到這邊，明天再繼續這一章的後半段，see you tomorrow～</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10220201">iT邦幫忙</a></p>

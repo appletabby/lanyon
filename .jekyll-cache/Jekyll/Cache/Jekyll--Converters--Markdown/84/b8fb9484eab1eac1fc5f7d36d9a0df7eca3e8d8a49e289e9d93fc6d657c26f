@@ -1,0 +1,91 @@
+I"0<p>本日閱讀進度：第11章 匿名函式、作用域及閉包（495～510頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.閉包是什麼</p>
+
+<p>閉包（closure）就是一個加上操作環境的函式。如果我們把「具有自由變數的」函式與「可以為這些自由變數提供變數繫結的」操作環境結合在一起，便會得到一個閉包。</p>
+
+<p>2.自由變數是什麼</p>
+
+<p>一個函式在它的程式碼主體（code body）中，通常具有區域變數，也可能有未被定義在函式裡的變數，稱之為自由變數，雖然位在函式的主體裡，但是變數並未被繫結任何值，也就是說，它們的宣告並未出現在函式裡。</p>
+
+<p>3.用閉包改寫程式碼</p>
+
+<p>假設我們要做一個計數器，程式碼如下：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var count = 0;
+function counter() {
+  count = count + 1;
+  return count;
+}
+console.log(counter());
+console.log(counter());
+console.log(counter());
+</code></pre></div></div>
+<p>因為count使用全域變數，如果是多人協作的情況，可能會有人使用相同名稱，導致互相衝突。</p>
+
+<p>這時候如果使用閉包，就能夠以區域的方式來保護count變數。
+寫法如下：</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function makeCounter() {
+  var count = 0;
+  
+  function counter() {
+    count = count + 1;
+    return count;
+  }
+  return counter;
+}
+
+var doCount = makeCounter();
+console.log(doCount());
+console.log(doCount());
+console.log(doCount());
+// 1
+// 2
+// 3
+</code></pre></div></div>
+
+<p>4.透過傳入函式運算式來建立閉包</p>
+
+<p>從函式回傳一個函式，並非建立閉包的唯一方式。另一個方法是將一個函式傳給另一個函式。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function makeTimer(doneMessage, n) {
+  setTimeout(function() { // 這裡有一個函式，做為引數被傳遞給setTimeout函式
+    alert(doneMessage);   // 這個函式具有一個自由變數doneMessage
+  }, n);
+}
+
+makeTimer("cookies are done!", 1000); // 1000毫秒後，此函式會被執行
+</code></pre></div></div>
+
+<p>5.以事件處理程序來建立閉包</p>
+
+<p>以計算點擊次數的程式碼為例（大家也可以貼到<a href="https://jsbin.com/?html,css,js,output">JS Bin</a>試試看)</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// html：
+&lt;button id="clickme"&gt;Click me!&lt;/button&gt;
+&lt;div id="message"&gt;&lt;/div&gt;
+
+// CSS：
+body, button { margin: 10px; }
+div { padding: 10px; }
+
+// JavaScript程式碼
+window.onload = function() {
+  var count = 0;
+  var message = "You clicked me ";
+  var div = document.getElementById("message");
+  
+  var button = document.getElementById("clickme");
+  button.onclick = function() {
+    count++;
+    div.innerHTML = message + count + "times!";
+  };
+};
+// 此函式具有3個自由變數：div、message、count，所以會有一個閉包為點擊處理程序而建立
+</code></pre></div></div>
+
+<p>今天認識的趨X、X勢資深前端工程師說，他面試人的時候，會考閉包喔！</p>
+
+<p>PS.今天的標題哏向Pikotaro致敬</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10226694">iT邦幫忙</a></p>
+:ET

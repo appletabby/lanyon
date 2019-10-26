@@ -1,0 +1,59 @@
+I"
+
+<p>本日閱讀進度：第七章 重要的資料型別（275～284頁）</p>
+
+<p>重點摘要：</p>
+
+<p>1.關於等於(=)運算符</p>
+
+<p><code class="highlighter-rouge">var x = 99</code>
+=是一個賦值運算符，用於把值賦予一個變數。</p>
+
+<p><code class="highlighter-rouge">x == 99</code>
+==是一個比較運算符，用於比較一個值與另一個值是否相等。遇到兩個運算元的資料型別不同的情況，會自動幫你轉換。（然後讓我們更麻煩）</p>
+
+<p><code class="highlighter-rouge">99 === 99</code>
+===是一個全等運算符，用於比較一個值與另一個值是否相等。遇到兩個運算元的資料型別不同的情況，直接判定false。只有在兩個運算元具有相同的資料型別和相同的值時，才會得到true。</p>
+
+<p>2.==運算符的轉換規則</p>
+
+<ul>
+  <li>情況1. 比較一個數字與一個字串</li>
+</ul>
+
+<p>字串會被轉換成數字，然後比較兩個數字。但並非所有字串都可以轉換成數字，這時就會出現false。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"42" == 42
+// "42"會被轉換成數字42，42 == 42 =&gt; true
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>99 == "vanilla"
+// 因為"vanilla"不能順利轉成數字，會變成NaN，99 == NaN =&gt; false
+</code></pre></div></div>
+
+<ul>
+  <li>情況2. 比較一個布林值與任何資料型別</li>
+</ul>
+
+<p>布林值會被轉換成一個數字（false會被轉換成0、true會被轉換成1），然後進行比較。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 == true
+// true會被轉換成1，1 == 1 =&gt; true
+</code></pre></div></div>
+
+<ul>
+  <li>情況3. 比較null與undefined</li>
+</ul>
+
+<p>這兩個值基本上都代表“沒有值”，所以比較這兩個值的結果為true。</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>undefined == null
+// true
+</code></pre></div></div>
+
+<p>是不是被JavaScript搞得很混亂呢？初學者的我們，遇到要做比較的時候，只要謹記一個規則，那就是</p>
+
+<p><strong>不管怎樣，用===就對了</strong></p>
+
+<p>如果還是不信邪的話，可以來<a href="https://thomas-yang.me/projects/oh-my-dear-js/">這裡</a>看看那精美的JS真值表。</p>
+
+<p>好，這堂課就上到這裡，下課！</p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10223891">iT邦幫忙</a></p>
+:ET

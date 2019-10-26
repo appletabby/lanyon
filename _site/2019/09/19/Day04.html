@@ -1,0 +1,33 @@
+<p>本日閱讀進度：
+第一章 JavaScript 快速導覽（22～42頁）</p>
+
+<p>重點摘要：
+1.JavaScript和使用者溝通的4種介面：</p>
+
+<ul>
+  <li>
+    <p>Alert：可以透過一個跳出的對話框，送出一個簡短的訊息，使用者必須停下動作，點擊OK，才能繼續他的動作。（就像Day02最後的範例）</p>
+  </li>
+  <li>
+    <p>Document.write：把網頁視為一份文件，可在任何時刻把任意的HTML和內容寫到頁面。不是個好的形式，但適合入門操作。</p>
+  </li>
+  <li>
+    <p>Console.log：是一個進行程式碼除錯的好工具。可以把console視為一個具有記錄功能的物件，訊息則記錄在控制台。但因一般使用者不會去看控制台，所以也不是很好的形式。</p>
+  </li>
+  <li>
+    <p>文件物件模型：和使用者溝通的最佳方式，可以存取實際的網頁、讀取並變更它的內容，甚至是改變結構和樣式。需要了解頁面的結構以及程式設計介面才有辦法撰寫。</p>
+  </li>
+</ul>
+
+<p>2.如何把程式碼加入頁面</p>
+
+<p>A. 把程式碼內嵌在<code class="highlighter-rouge">&lt;head&gt;</code>元素裡：最常見的方法，可以讓程式碼較容易被找到。瀏覽器載入頁面時，會先載入<code class="highlighter-rouge">&lt;head&gt;</code>的所有內容，但因<code class="highlighter-rouge">&lt;body&gt;</code>還沒載入，使用者可能需要等一段時間才會看到頁面。</p>
+
+<p>B. 把程式碼內嵌在文件的本文中：需要將程式碼放在<code class="highlighter-rouge">&lt;script&gt;</code>元素裡，並把<code class="highlighter-rouge">&lt;script&gt;</code>元素擺到頁面的<code class="highlighter-rouge">&lt;body&gt;</code>中（通常放在本文結尾處）。使用者可在等待程式碼被載入的時候看到頁面的內容。</p>
+
+<p>C. 把程式碼放到另一個檔案，並從<code class="highlighter-rouge">&lt;head&gt;</code>來連結它：就像連結CSS檔案一樣，差別在於會使用<code class="highlighter-rouge">&lt;script&gt;</code>標記的src屬性，將url指向JavaScript檔案，此檔案可用於多個頁面，且較容易維護。在本文載入前，程式碼就先被載入了。</p>
+
+<p>D. 在頁面的本文裡連結外部的檔案：和上一點一樣，外部的JavaScript檔案較易維護，而擺在本文底部可以讓它在本文之後才被載入。
+<img src="https://i.imgur.com/n1Ljuks.png" alt="JS擺放位置" /></p>
+
+<p>本文同步發表於<a href="https://ithelp.ithome.com.tw/articles/10217269">iT邦幫忙</a></p>
